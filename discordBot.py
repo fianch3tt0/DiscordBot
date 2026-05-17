@@ -12,6 +12,12 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+words = ["python", "java", "kotlin", "javascript"]
+chosen_word = ""
+word_display = []
+attempts = 6
+guessed_letters = []
+
 @bot.event
 async def on_ready():
     print(f"Logged in successfully as {bot.user.name}")
