@@ -94,7 +94,7 @@ async def userinfo(ctx):
 
 @bot.command()
 @commands.has_permissions(manage_messages=True)
-async def deletemsg(ctx, amount: int = 5):
+async def deletemsg(ctx, amount: int = 0):
     await ctx.channel.purge(limit=amount + 1)
     await ctx.send(f"Cleared {amount} messages.", delete_after=3)
 
