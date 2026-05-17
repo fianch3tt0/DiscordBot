@@ -12,7 +12,7 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-words = ["python", "java", "kotlin", "javascript"]
+words = ["python", "java", "steam", "javascript"]
 chosen_word = ""
 word_display = []
 attempts = 6
@@ -68,5 +68,28 @@ async def hangman(ctx, guess: str = None):
         await ctx.send(f"Game over. The correct word was **{chosen_word}**.")
         chosen_word = ""  
 
+@bot.command()
+async def serverinfo(ctx):
+    guild = ctx.guild
+    server_name = guild.name
+    member_count = guild.member_count
+    created_at = guild.created_at.strftime("%B %d, %Y")
+    
+    response = (
+        f"Server Name: {server_name}\n"
+        f"Total Members: {member_count}\n"
+        f"Creation Date: {created_at}"
+    )
+    await ctx.send(response)
+
+@bot.command()
+async def userinfo(ctx):
+    user = ctx.author
+    response = (
+        f"User: {user.display_name}\n"
+        f"Joined Server: {user.joined_at.strftime('%B %d, %Y')}\n"
+        f"ID: {user.id}"
+    )
+    await ctx.send(response)
 
 bot.run(token)
